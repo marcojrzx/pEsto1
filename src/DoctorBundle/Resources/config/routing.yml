@@ -1,3 +1,7 @@
+doctor_paciente:
+    resource: "@DoctorBundle/Resources/config/routing/paciente.php"
+    prefix:   /paciente
+
 doctor_doctor:
     resource: "@DoctorBundle/Resources/config/routing/doctor.php"
     prefix:   /doctor
