@@ -1,0 +1,4 @@
+doctor_doctor:
+    resource: "@DoctorBundle/Resources/config/routing/doctor.php"
+    prefix:   /doctor
+

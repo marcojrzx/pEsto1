@@ -1,0 +1,45 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Doctor list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Pass</th>
+                <th>Iddoctor</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('doctor_show', { 'id': entity.iddoctor }) }}">{{ entity.nombre }}</a></td>
+                <td>{{ entity.correo }}</td>
+                <td>{{ entity.pass }}</td>
+                <td>{{ entity.iddoctor }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('doctor_show', { 'id': entity.iddoctor }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('doctor_edit', { 'id': entity.iddoctor }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('doctor_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
