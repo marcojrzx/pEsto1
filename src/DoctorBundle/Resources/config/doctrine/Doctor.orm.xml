@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="DoctorBundle\Entity\Doctor" table="doctor">
+    <unique-constraints>
+      <unique-constraint name="correo_UNIQUE" columns="correo"/>
+      <unique-constraint name="nombre_UNIQUE" columns="nombre"/>
+    </unique-constraints>
+    <id name="iddoctor" type="integer" column="idDoctor">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nombre" type="string" column="nombre" length="65" nullable="false"/>
+    <field name="correo" type="string" column="correo" length="70" nullable="false"/>
+    <field name="pass" type="integer" column="pass" nullable="false"/>
+  </entity>
+</doctrine-mapping>

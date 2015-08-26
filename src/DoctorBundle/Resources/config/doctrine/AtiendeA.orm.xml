@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="DoctorBundle\Entity\AtiendeA" table="atiende_a">
+    <indexes>
+      <index name="idDoc_idx" columns="idDoc"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="idPac_UNIQUE" columns="idPac"/>
+    </unique-constraints>
+    <id name="idatiende" type="integer" column="idAtiende">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idpac" target-entity="Paciente">
+      <join-columns>
+        <join-column name="idPac" referenced-column-name="idPaciente"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iddoc" target-entity="Doctor">
+      <join-columns>
+        <join-column name="idDoc" referenced-column-name="idDoctor"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
