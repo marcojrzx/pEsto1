@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use DoctorBundle\Entity\Doctor;
 use DoctorBundle\Form\DoctorType;
-//comentario para GIT
+//comentario para GIT ejemplo de quitar poner
 /**
  * Doctor controller.
  *
