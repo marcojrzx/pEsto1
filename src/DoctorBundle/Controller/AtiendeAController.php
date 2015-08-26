@@ -5,37 +5,37 @@ namespace DoctorBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use DoctorBundle\Entity\Doctor;
-use DoctorBundle\Form\DoctorType;
-//comentario para GIT
+use DoctorBundle\Entity\AtiendeA;
+use DoctorBundle\Form\AtiendeAType;
+
 /**
- * Doctor controller.
+ * AtiendeA controller.
  *
  */
-class DoctorController extends Controller
+class AtiendeAController extends Controller
 {
 
     /**
-     * Lists all Doctor entities.
+     * Lists all AtiendeA entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('DoctorBundle:Doctor')->findAll();
+        $entities = $em->getRepository('DoctorBundle:AtiendeA')->findAll();
 
-        return $this->render('DoctorBundle:Doctor:index.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Doctor entity.
+     * Creates a new AtiendeA entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Doctor();
+        $entity = new AtiendeA();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,26 +44,26 @@ class DoctorController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('doctor_show', array('id' => $entity->getIddoctor())));
+            return $this->redirect($this->generateUrl('atiendea_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('DoctorBundle:Doctor:new.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Doctor entity.
+     * Creates a form to create a AtiendeA entity.
      *
-     * @param Doctor $entity The entity
+     * @param AtiendeA $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Doctor $entity)
+    private function createCreateForm(AtiendeA $entity)
     {
-        $form = $this->createForm(new DoctorType(), $entity, array(
-            'action' => $this->generateUrl('doctor_create'),
+        $form = $this->createForm(new AtiendeAType(), $entity, array(
+            'action' => $this->generateUrl('atiendea_create'),
             'method' => 'POST',
         ));
 
@@ -73,60 +73,60 @@ class DoctorController extends Controller
     }
 
     /**
-     * Displays a form to create a new Doctor entity.
+     * Displays a form to create a new AtiendeA entity.
      *
      */
     public function newAction()
     {
-        $entity = new Doctor();
+        $entity = new AtiendeA();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('DoctorBundle:Doctor:new.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Doctor entity.
+     * Finds and displays a AtiendeA entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DoctorBundle:Doctor')->find($id);
+        $entity = $em->getRepository('DoctorBundle:AtiendeA')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Doctor entity.');
+            throw $this->createNotFoundException('Unable to find AtiendeA entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('DoctorBundle:Doctor:show.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Doctor entity.
+     * Displays a form to edit an existing AtiendeA entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DoctorBundle:Doctor')->find($id);
+        $entity = $em->getRepository('DoctorBundle:AtiendeA')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Doctor entity.');
+            throw $this->createNotFoundException('Unable to find AtiendeA entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('DoctorBundle:Doctor:edit.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -134,16 +134,16 @@ class DoctorController extends Controller
     }
 
     /**
-    * Creates a form to edit a Doctor entity.
+    * Creates a form to edit a AtiendeA entity.
     *
-    * @param Doctor $entity The entity
+    * @param AtiendeA $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Doctor $entity)
+    private function createEditForm(AtiendeA $entity)
     {
-        $form = $this->createForm(new DoctorType(), $entity, array(
-            'action' => $this->generateUrl('doctor_update', array('id' => $entity->getIddoctor())),
+        $form = $this->createForm(new AtiendeAType(), $entity, array(
+            'action' => $this->generateUrl('atiendea_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -152,17 +152,17 @@ class DoctorController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Doctor entity.
+     * Edits an existing AtiendeA entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('DoctorBundle:Doctor')->find($id);
+        $entity = $em->getRepository('DoctorBundle:AtiendeA')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Doctor entity.');
+            throw $this->createNotFoundException('Unable to find AtiendeA entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -172,17 +172,17 @@ class DoctorController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('doctor_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('atiendea_edit', array('id' => $id)));
         }
 
-        return $this->render('DoctorBundle:Doctor:edit.html.twig', array(
+        return $this->render('DoctorBundle:AtiendeA:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Doctor entity.
+     * Deletes a AtiendeA entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -192,21 +192,21 @@ class DoctorController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('DoctorBundle:Doctor')->find($id);
+            $entity = $em->getRepository('DoctorBundle:AtiendeA')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Doctor entity.');
+                throw $this->createNotFoundException('Unable to find AtiendeA entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('doctor'));
+        return $this->redirect($this->generateUrl('atiendea'));
     }
 
     /**
-     * Creates a form to delete a Doctor entity by id.
+     * Creates a form to delete a AtiendeA entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -215,7 +215,7 @@ class DoctorController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('doctor_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('atiendea_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
